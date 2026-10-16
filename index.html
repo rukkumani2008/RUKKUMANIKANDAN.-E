@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rukkumanikandan. E</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ CONTENT NOTE ============
+   All personal copy is placeholder text marked with [square brackets].
+   Search for "[" in this file and replace with your own words. */
+:root{
+  --paper:#ECEEE9; --ink:#17201F; --a:#0E7C7B; --b:#F4B63F;
+  --dx:5px; --dy:4px;
+  --ease:cubic-bezier(.7,0,.2,1);
+  --display:"Anton","Impact",sans-serif; --body:"Courier Prime","Courier New",monospace;
+}
+body.flip{--a:#F4B63F;--b:#0E7C7B}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 1.05rem/1.7 var(--body);overflow-x:hidden;transition:background .6s}
+/* paper grain: tiny dots of ink, CSS only */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.5;mix-blend-mode:multiply;
+  background:radial-gradient(circle at 20% 30%,rgba(23,32,31,.07) 0 1px,transparent 1.5px) 0 0/7px 9px,
+             radial-gradient(circle at 70% 60%,rgba(23,32,31,.05) 0 1px,transparent 1.5px) 0 0/11px 13px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.wrap{padding:0 20px;max-width:1180px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:.95;letter-spacing:.005em;text-transform:uppercase}
+h2{font-size:clamp(3rem,13vw,7.5rem);color:var(--a);text-shadow:calc(var(--dx)*.6) calc(var(--dy)*.6) 0 var(--b)}
+section{padding:96px 0 72px;position:relative}
+.sheet{position:relative}
+
+/* ---------- opening ---------- */
+#open{position:fixed;inset:0;z-index:100;background:var(--b);display:grid;place-items:center;
+  clip-path:circle(150% at 50% 50%);transition:clip-path .75s var(--ease)}
+#open.go{clip-path:circle(0% at 50% 50%)}
+#open .c1,#open .c2{position:absolute;border-radius:50%;left:50%;top:50%;width:30vmax;height:30vmax;margin:-15vmax;transform:scale(0)}
+#open .c1{background:var(--a);animation:grow .9s var(--ease) .15s forwards}
+#open .c2{background:var(--ink);width:14vmax;height:14vmax;margin:-7vmax;animation:grow .8s var(--ease) .55s forwards}
+#open .tag{position:relative;font:400 clamp(2rem,9vw,4.5rem)/1 var(--display);color:var(--paper);opacity:0;animation:pop .5s var(--ease) 1s forwards;text-transform:uppercase}
+@keyframes grow{to{transform:scale(1)}}
+@keyframes pop{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+#skip{position:fixed;right:16px;bottom:16px;z-index:101;font:700 .95rem var(--body);background:var(--paper);color:var(--ink);border:2px solid var(--ink);padding:8px 14px;cursor:pointer}
+#skip:hover{background:var(--ink);color:var(--paper)}
+#open.done,#skip.done{display:none}
+
+/* ---------- landing ---------- */
+.hero{min-height:100svh;padding:28px 0 56px;display:flex;flex-direction:column;justify-content:space-between;
+  background:radial-gradient(circle,var(--a) 1.6px,transparent 2px) 0 0/9px 9px;
+  background-position:right top;-webkit-mask:none}
+.hero .wrap{width:100%}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.mono{width:84px;height:84px;cursor:pointer;flex:none;border:0;background:none;transform:rotate(-8deg);transition:transform .5s var(--ease)}
+.mono:hover{transform:rotate(4deg) scale(1.06)}
+nav{display:flex;flex-direction:column;align-items:flex-end;gap:2px;font-weight:700}
+nav a{text-decoration:none;padding:0 4px;background:var(--paper)}
+nav a:hover{background:var(--b)}
+.name{font:400 calc((100vw - 40px)/7.9)/.86 var(--display);text-transform:uppercase;color:var(--a);
+  text-shadow:var(--dx) var(--dy) 0 var(--b);margin-top:12vh;letter-spacing:.005em;word-break:keep-all;white-space:nowrap}
+@media(min-width:1180px){.name{font-size:9.4rem}}
+.stamp{display:inline-block;font:400 clamp(1.4rem,5vw,2.4rem) var(--display);background:var(--ink);color:var(--paper);padding:2px 14px 0;transform:rotate(-3deg);margin:14px 0 0 4px;text-transform:uppercase}
+.lead{display:grid;gap:28px;margin-top:6vh}
+.tagline{font-size:clamp(1.25rem,4.4vw,1.9rem);line-height:1.35;max-width:22ch;font-weight:700}
+.now{background:var(--b);display:inline-block;padding:4px 10px;margin-top:10px;font-style:italic}
+.btns{display:flex;flex-wrap:wrap;gap:14px}
+.btn{font:400 1.5rem var(--display);text-transform:uppercase;text-decoration:none;padding:10px 26px 6px;border:3px solid var(--ink);
+  background:var(--ink);color:var(--paper);box-shadow:6px 6px 0 var(--a);transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.btn.alt{background:var(--paper);color:var(--ink);box-shadow:6px 6px 0 var(--b)}
+.btn:hover{transform:translate(4px,4px);box-shadow:2px 2px 0 var(--a)}
+.btn.alt:hover{box-shadow:2px 2px 0 var(--b)}
+@media(min-width:800px){.lead{grid-template-columns:1.1fr 1fr;align-items:end}.btns{justify-content:flex-end}}
+
+/* ---------- about ---------- */
+.about{display:grid;gap:36px;margin-top:40px}
+.about p{max-width:52ch;margin-bottom:1.1em}
+.about p:first-child::first-letter{font:400 5.2rem/.8 var(--display);float:left;padding:6px 10px 0 0;color:var(--a);text-shadow:3px 3px 0 var(--b)}
+.pull{font:400 clamp(2rem,7vw,3.4rem)/1 var(--display);text-transform:uppercase;transform:rotate(2deg);background:var(--b);padding:20px;align-self:start;mix-blend-mode:multiply}
+@media(min-width:800px){.about{grid-template-columns:1.4fr .8fr;gap:80px}.pull{margin-top:90px}}
+
+/* ---------- skills ---------- */
+.skills{margin-top:44px;display:grid;gap:0}
+.row{display:grid;gap:6px 24px;padding:22px 0;border-top:3px solid var(--ink)}
+.row:last-child{border-bottom:3px solid var(--ink)}
+.lvl{font:400 1.7rem/1 var(--display);text-transform:uppercase;color:var(--a)}
+.lvl small{display:block;font:italic 400 .95rem/1.4 var(--body);text-transform:none;color:var(--ink);margin-top:4px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tags span{padding:2px 12px;border:2px solid var(--ink);border-radius:40px;font-weight:700}
+.row:nth-child(1) .tags span{background:var(--b)}
+.row:nth-child(2) .tags span{background:var(--paper)}
+.row:nth-child(3) .tags span{border-style:dashed}
+@media(min-width:800px){.row{grid-template-columns:260px 1fr;align-items:center}}
+
+/* ---------- journey ---------- */
+.trail{margin-top:48px;display:grid;gap:56px}
+.leg{position:relative;padding-left:26px;border-left:6px solid var(--a)}
+.leg:nth-child(2){border-left-style:dashed;border-color:var(--ink)}
+.leg:nth-child(3){border-left:6px dotted var(--b)}
+.leg h3{font-size:2.3rem;margin-bottom:14px;display:inline-block;background:var(--ink);color:var(--paper);padding:6px 12px 2px;transform:rotate(-1.5deg)}
+.leg:nth-child(2) h3{transform:rotate(1.2deg);background:var(--a)}
+.leg:nth-child(3) h3{background:var(--b);color:var(--ink)}
+.leg li{list-style:none;margin:0 0 12px;max-width:46ch}
+.leg li b{display:block;font-size:1.15rem}
+@media(min-width:900px){.trail{grid-template-columns:repeat(3,1fr);gap:40px}.leg:nth-child(2){margin-top:70px}.leg:nth-child(3){margin-top:140px}}
+
+/* ---------- beyond ---------- */
+.bits{margin-top:48px;display:flex;flex-wrap:wrap;gap:22px 26px;align-items:flex-start}
+.bit{padding:22px 22px 18px;max-width:300px;font-size:1rem;line-height:1.5}
+.bit b{display:block;font:400 1.8rem/1 var(--display);text-transform:uppercase;margin-bottom:8px}
+.bit:nth-child(1){background:var(--b);transform:rotate(-2.5deg);border-radius:6px}
+.bit:nth-child(2){background:var(--ink);color:var(--paper);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;padding:40px 36px;max-width:280px;transform:rotate(3deg)}
+.bit:nth-child(3){border:3px solid var(--ink);transform:rotate(1.5deg);margin-top:20px}
+.bit:nth-child(4){background:var(--a);color:var(--paper);clip-path:polygon(0 6%,100% 0,96% 100%,3% 94%);padding:30px 28px;transform:rotate(-1deg)}
+.bit:nth-child(5){border-bottom:6px solid var(--b);border-left:6px solid var(--a);transform:rotate(-1deg)}
+
+/* ---------- contact ---------- */
+.contact{background:var(--a);color:var(--paper);margin-top:60px}
+.contact h2{color:var(--paper);text-shadow:calc(var(--dx)*.6) calc(var(--dy)*.6) 0 var(--ink)}
+.links{margin-top:36px;display:grid;gap:4px}
+.links a{font:400 clamp(2rem,8.5vw,4.6rem)/1.05 var(--display);text-transform:uppercase;text-decoration:none;display:flex;justify-content:space-between;gap:12px;
+  border-bottom:3px solid var(--paper);padding:12px 0 4px;transition:padding .35s var(--ease),background .35s,color .35s}
+.links a span{font:italic 400 1rem var(--body);text-transform:none;align-self:flex-end;overflow-wrap:anywhere;text-align:right}
+.links a:hover{padding-left:18px;background:var(--b);color:var(--ink)}
+footer{padding:24px 0 40px;font-size:.9rem;font-style:italic}
+#toast{position:fixed;left:50%;bottom:22px;z-index:90;transform:translate(-50%,160%);background:var(--ink);color:var(--paper);padding:10px 18px;font-weight:700;transition:transform .5s var(--ease)}
+#toast.on{transform:translate(-50%,0)}
+
+/* scroll reveal: one soft ink-in only for the section headings */
+.ink{clip-path:inset(0 100% 0 0);transition:clip-path .9s var(--ease)}
+.ink.in{clip-path:inset(0 0 0 0)}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}.ink{clip-path:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Opening: colour circles grow, then the page is revealed through a closing circle -->
+<div id="open" aria-hidden="true"><div class="c1"></div><div class="c2"></div><div class="tag">R. E</div></div>
+<button id="skip" type="button">Skip</button>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="top">
+      <button class="mono" id="mono" type="button" aria-label="Monogram R E">
+        <svg viewBox="0 0 100 100" width="84" height="84" role="img" aria-hidden="true">
+          <defs><pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.5" fill="var(--ink)"/></pattern></defs>
+          <circle cx="50" cy="50" r="46" fill="var(--b)"/>
+          <circle cx="56" cy="54" r="40" fill="var(--a)" style="mix-blend-mode:multiply"/>
+          <circle cx="50" cy="50" r="46" fill="url(#dots)" opacity=".35"/>
+          <text x="50" y="62" text-anchor="middle" font-family="Anton,Impact,sans-serif" font-size="38" fill="#17201F">RE</text>
+        </svg>
+      </button>
+      <nav aria-label="Sections">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#journey">Journey</a><a href="#beyond">Beyond code</a><a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <h1 class="name" id="name">Rukkumanikandan</h1>
+    <span class="stamp">. E</span>
+    <div class="lead">
+      <div>
+        <p class="tagline">[One line, in your own words, about what you make and how.]</p>
+        <p class="now">Currently: [what you're building or learning this month]</p>
+      </div>
+      <div class="btns"><a class="btn" href="#about">Explore</a><a class="btn alt" href="#contact">Say hi</a></div>
+    </div>
+  </div>
+</header>
+
+<section id="about"><div class="wrap">
+  <h2 class="ink">About me</h2>
+  <div class="about">
+    <div>
+      <p>[Start with where you are from and how you first got curious about computers. Write it the way you would tell a friend, in first person.]</p>
+      <p>[Then the turning point: the first thing you built that actually worked, and how it felt to see it run.]</p>
+      <p>[End with what you care about when you work: the kind of problems you like, and the kind of people you like to work with.]</p>
+    </div>
+    <p class="pull">[A short line you'd put on a poster]</p>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2 class="ink">Skills</h2>
+  <div class="skills">
+    <div class="row"><div class="lvl">Comfortable<small>I reach for these without thinking.</small></div><div class="tags"><span>[HTML]</span><span>[CSS]</span><span>[JavaScript]</span></div></div>
+    <div class="row"><div class="lvl">Getting there<small>I can build with them, and I still look things up.</small></div><div class="tags"><span>[Git]</span><span>[Python]</span><span>[React]</span></div></div>
+    <div class="row"><div class="lvl">Learning<small>New to me, and I'm enjoying the mess.</small></div><div class="tags"><span>[Databases]</span><span>[Accessibility]</span></div></div>
+  </div>
+</div></section>
+
+<section id="journey"><div class="wrap">
+  <h2 class="ink">Journey</h2>
+  <div class="trail">
+    <div class="leg"><h3>Made</h3><ul>
+      <li><b>[Project name]</b>[One sentence: what it does and who it was for.]</li>
+      <li><b>[Project name]</b>[One sentence: what went wrong and what you fixed.]</li></ul></div>
+    <div class="leg"><h3>Learning</h3><ul>
+      <li><b>[Topic]</b>[Why you picked it, and where you are with it.]</li>
+      <li><b>[Topic]</b>[What you're stuck on right now.]</li></ul></div>
+    <div class="leg"><h3>Next</h3><ul>
+      <li><b>[Thing you want to build]</b>[Who it would help.]</li>
+      <li><b>[Another one]</b>[What you'd need to learn first.]</li></ul></div>
+  </div>
+</div></section>
+
+<section id="beyond"><div class="wrap">
+  <h2 class="ink">Beyond code</h2>
+  <div class="bits">
+    <div class="bit"><b>[Hobby]</b>[Two lines on what you do and why you love it.]</div>
+    <div class="bit"><b>[Fun fact]</b>[Something people never guess about you.]</div>
+    <div class="bit"><b>[On repeat]</b>[A song, show or book you keep returning to.]</div>
+    <div class="bit"><b>[Food]</b>[The thing you'd eat every day.]</div>
+    <div class="bit"><b>[Small thing]</b>[A tiny habit that makes you, you.]</div>
+  </div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <h2 class="ink">Say hi</h2>
+  <div class="links">
+    <a href="mailto:you@example.com">Email <span>[you@example.com]</span></a>
+    <a href="https://www.linkedin.com/in/your-name" target="_blank" rel="noopener">LinkedIn <span>[linkedin.com/in/your-name]</span></a>
+    <a href="https://github.com/your-name" target="_blank" rel="noopener">GitHub <span>[github.com/your-name]</span></a>
+  </div>
+  <footer>Printed in two inks. Made by Rukkumanikandan. E</footer>
+</div></section>
+
+<div id="toast" role="status"></div>
+
+<script>
+(function(){
+  var root=document.documentElement, rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var open=document.getElementById('open'), skip=document.getElementById('skip'), done=false;
+
+  /* Opening: plays once, under 2.5s */
+  function finish(){
+    if(done)return; done=true;
+    open.classList.add('go'); skip.classList.add('done');
+    setTimeout(function(){open.classList.add('done')},800);
+  }
+  skip.addEventListener('click',finish);
+  if(rm){open.classList.add('done');skip.classList.add('done');done=true}
+  else setTimeout(finish,1800);
+
+  /* Signature move: misregistered ink. The yellow plate drifts away from the teal plate
+     as you move the pointer or scroll, like a badly aligned riso print. */
+  var name=document.getElementById('name');
+  function set(x,y){root.style.setProperty('--dx',x.toFixed(1)+'px');root.style.setProperty('--dy',y.toFixed(1)+'px')}
+  if(!rm){
+    addEventListener('pointermove',function(e){
+      set((e.clientX/innerWidth-.5)*-26,(e.clientY/innerHeight-.5)*-20);
+    },{passive:true});
+    addEventListener('scroll',function(){
+      var s=Math.min(scrollY/600,1);
+      set(5+s*10,4+s*8);
+    },{passive:true});
+  }
+
+  /* Headings ink in once */
+  var els=document.querySelectorAll('.ink');
+  if('IntersectionObserver' in window && !rm){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.3});
+    els.forEach(function(el){io.observe(el)});
+  }else els.forEach(function(el){el.classList.add('in')});
+
+  /* Easter egg: click the monogram five times to swap the inks */
+  var n=0,t,toast=document.getElementById('toast');
+  document.getElementById('mono').addEventListener('click',function(){
+    clearTimeout(t); n++; t=setTimeout(function(){n=0},900);
+    if(n>=5){
+      n=0; document.body.classList.toggle('flip');
+      toast.textContent='Wrong ink loaded. Printed again.';
+      toast.classList.add('on'); setTimeout(function(){toast.classList.remove('on')},2400);
+    }
+  });
+})();
+</script>
+</body>
+</html>
